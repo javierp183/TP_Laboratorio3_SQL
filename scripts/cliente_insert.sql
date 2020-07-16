@@ -1,0 +1,13 @@
+-- Script de inserción de Cliente.
+-- Descripción:
+-- IDPais : Corresponde al ID del País que se obtiene de la tabla país
+-- Nombres: Nombre del Operador
+-- Apellido: Apellido del Operador
+-- Email: Email de contacto
+-- Sexo: M -> Masculino , F -> Femenino
+-- CUIL: Numero de CUIL
+-- FechaNac: Fecha de nacimiento del cliente
+-- INSERT into Cliente
+--     (IDPais, Apellidos, Nombres, Email, Sexo, CUIL, FechaNac)
+-- VALUES
+--     (1, 'Sarmiento', 'Torres', 'sarmiento@gmail.com', 'M', '21333', CAST(N'1990-10-02' AS Date))

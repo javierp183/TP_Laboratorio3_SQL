@@ -1,0 +1,9 @@
+-- Script de inserción de Producto.
+-- Descripción: nombre y descripcion del producto
+-- Color: Color del producto
+-- Precio: Precio del producto
+-- Stock: Cantidad de productos
+-- insert into Producto
+--     (Descripcion,Color,Precio, Stock)
+-- VALUES
+--     ('pantalon', 'gris', 1000, 10)

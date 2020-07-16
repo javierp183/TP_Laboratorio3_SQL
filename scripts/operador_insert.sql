@@ -1,0 +1,12 @@
+-- Script de inserción de Operador.
+-- Descripción:
+-- IDPais : Corresponde al ID del País que se obtiene de la tabla país
+-- Usuario: El mismo corresponde al nombre de usuario el cual el operador va a usar 
+--          Para ingresar al sistema.
+-- Nombre: Nombre del Operador
+-- Apellido: Apellido del Operador
+-- Clave: Clave de 30 caracteres ( minimo requisito para el hash md5 )
+-- insert into Operador
+--     (IDPais,Usuario, Nombres, Apellidos, Clave)
+-- VALUES
+--     (1, 'javier', 'Javier', 'Pereyra', '0123456789012345678901234567890123456789')

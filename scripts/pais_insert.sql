@@ -1,0 +1,11 @@
+-- Script de inserción de ventas por producto
+-- Descripcion:
+-- CantidadTotalProcutos: Cantidad total de venta de productos
+-- ValorTotaldeVenta: Valor total del ticket de venta.
+-- Fecha: Fecha de la venta
+-- IDCliente: ID de identificacion del cliente
+-- IDOperador: ID de operador que realizo la venta
+-- insert into Ventas
+--     (CantidadTotalProductos,ValorTotaldeVenta,Fecha,IDCliente,IDOperador)
+-- VALUES
+--     (1, 1000, CAST(N'1986-10-02' AS Date), 4, 5)
