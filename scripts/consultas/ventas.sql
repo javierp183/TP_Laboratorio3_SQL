@@ -43,3 +43,13 @@ from ventas
 -- from Ventas as V
 --     inner join Operador as O on O.ID = V.IDOperador
 -- where O.Usuario = 'javier' and YEAR(V.Fecha) = '1986'
+
+-- Script para sumar el total de ventas a un Cliente
+-- select Count(V.IDCliente)
+-- from Ventas as V
+--     inner join Cliente as C on C.ID = V.IDCliente
+-- where C.CUIL = '20333'
+
+-- Script para contar el total de ventas por nombre Pais
+select *
+Pais
