@@ -37,3 +37,9 @@ from ventas
 -- from Ventas as V
 --     inner join Operador as O on O.ID = V.IDOperador
 -- where O.Usuario = 'javier' and YEAR(V.Fecha) = '1986'
+
+-- script para sumar el total de ventas por año por Operador
+-- select sum(V.ValorTotaldeVenta)
+-- from Ventas as V
+--     inner join Operador as O on O.ID = V.IDOperador
+-- where O.Usuario = 'javier' and YEAR(V.Fecha) = '1986'
