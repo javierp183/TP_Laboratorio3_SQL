@@ -1,0 +1,2 @@
+-- Listar cantidad de clientes por cada País.- ( subconsulta ): TODO
+-- Listar suma total vendida por cada País.- ( subconsulta ): TODO
