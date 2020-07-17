@@ -2,10 +2,6 @@
 -- select Count(*)
 -- from ventas;
 
-select *
-from ventas
-
-
 -- Script sumar el total de todas las ventas
 -- select sum(V.ValorTotaldeVenta)
 -- from Ventas as V
@@ -56,3 +52,9 @@ from ventas
 --     inner join Cliente as C on C.ID = V.IDCliente
 --     inner join Pais as P on P.ID = C.IDPais
 -- where P.Nombre = 'Argentina'
+
+-- Script para contar el total de productos a un cliente.
+-- select sum(V.cantidadTotalProductos)
+-- from Ventas as V
+--     inner join Cliente as C on C.ID = V.IDCliente
+-- where C.CUIL = '20333'
