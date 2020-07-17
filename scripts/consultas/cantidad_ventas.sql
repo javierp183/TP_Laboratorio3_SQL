@@ -16,9 +16,16 @@ from ventas
 --     inner join Operador as O on O.ID = V.IDOperador
 -- where O.Usuario = 'javier'
 
-
 -- Script para sumar la cantidad de ventas por Operador de Productos
 -- select sum(V.cantidadTotalProductos)
 -- from ventas as V
 --     inner join Operador as O on O.ID = V.IDOperador
 -- where O.Usuario = 'javier'
+
+-- Script para contar la cantidad de ventas de una fecha
+-- select V.Fecha
+-- from Ventas as V
+-- where V.Fecha = '1986-10-02'
+
+-- TODO:
+-- Script para contar la cantidad de ventas de un año
