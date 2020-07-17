@@ -27,5 +27,7 @@ from ventas
 -- from Ventas as V
 -- where V.Fecha = '1986-10-02'
 
--- TODO:
 -- Script para contar la cantidad de ventas de un año
+-- select count(V.Fecha)
+-- from Ventas as V
+-- where YEAR(V.Fecha) = '1986'
