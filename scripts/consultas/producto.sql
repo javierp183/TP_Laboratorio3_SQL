@@ -1,4 +1,4 @@
-use sventaropa
+-- use sventaropa
 -- Consulta para contar cantidad de productos
 -- select count(P.ID)
 -- from Producto as P

@@ -73,3 +73,12 @@
 --     where C.Sexo = 'F'
 -- ) as [Sexo Femenino]
 -- from Cliente as C
+
+-- Script para contar la cantidad de ventas por cada año ( subsconsulta )
+-- select YEAR(V.Fecha),
+--     (
+--     select count(*)
+--     from Ventas as Ve
+--     where YEAR(V.Fecha) = YEAR(Ve.Fecha)
+-- )
+-- from Ventas as V
