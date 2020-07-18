@@ -10,3 +10,12 @@
 --     where O.ID = V.IDOperador
 -- ) as [Total de Ventas]
 -- from Operador as O
+
+-- Media de ventas por Operador ( subconsulta ):
+-- select O.Usuario,
+--     (
+--     select avg(V.ValorTotaldeVenta)
+--     from Ventas as V
+--     where O.ID = V.IDOperador
+-- )
+-- from Operador as O
