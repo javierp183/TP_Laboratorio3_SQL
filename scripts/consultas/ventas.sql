@@ -58,3 +58,18 @@
 -- from Ventas as V
 --     inner join Cliente as C on C.ID = V.IDCliente
 -- where C.CUIL = '20333'
+
+
+-- Cantidad de ventas por cliente por sexo ( M: Masculino, F: Femenino ).- ( subconsulta )
+-- select distinct C.Sexo,
+--     (
+--     select count(V.ID)
+--     from Ventas as V
+--     where C.Sexo = 'M'
+-- ) as [Sexo Masculino],
+--     (
+--     select count(V.ID)
+--     from Ventas as V
+--     where C.Sexo = 'F'
+-- ) as [Sexo Femenino]
+-- from Cliente as C
