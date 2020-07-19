@@ -85,3 +85,16 @@
 -- from VW_Reporte_Generos
 
 
+-- Reporte de CUIL de cada cliente 
+-- create view VW_Reporte_CUIL
+-- AS
+--     select C.CUIL
+--     from CLiente as C
+
+
+-- drop view VW_Reporte_CUIL
+
+-- select *
+-- from VW_Reporte_CUIL
+
+
