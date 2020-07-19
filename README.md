@@ -5,6 +5,8 @@ Trabajo Practico Laboratorio 3:
 Tech:
  - MSSQL Server 2017
  - Docker
+ - Ubuntu Linux 20.04
+ - Visual Studio Code
 
  Estructura de archivos y directorios:
 
@@ -33,3 +35,10 @@ Tech:
  
  - /vistas
  - vistas.sql
+
+
+ # Orden de Inicialización de base de datos
+
+ - 1° "sventaropa_createdb.sql".-
+ - 2° "precarga.sql".-
+ - 3° se pueden utilizas las lineas de "consultas","inserts_y_carga","storeproc" y "vistas".
