@@ -53,3 +53,35 @@
 -- Listar los Clientes que superan la edad Media
 -- select *
 -- from VW_ClientesQueSuperanEdadMedia
+
+-- Reporte de usuarios Operadores que vendieron pantalones
+-- create view VW_PantalonesPorOperador
+-- as
+--     select P.Descripcion, O.Usuario
+--     from Ventas_x_Producto as VXP
+--         inner join Producto as P on P.ID = VXP.IDProducto
+--         inner join Ventas as V on V.ID = VXP.IDVentas
+--         inner join Operador as O on O.ID = V.IDOperador
+--     where P.Descripcion = 'pantalon'
+
+-- drop view VW_PantalonesPorOperador
+
+-- select *
+-- from VW_PantalonesPorOperador
+
+-- Reporte de usuarios de que ID son Clientes Femeninos y que otros Masculinos: todo
+-- create view VW_Reporte_Generos
+-- as
+--     SELECT C.Nombres, C.Apellidos,
+--         case C.Sexo
+--     when 'M' then 'Masculino'
+--     when 'F' then 'Femenino'
+-- end as Genero
+--     from Cliente as C
+
+
+-- drop view VW_Reporte_Generos
+-- select *
+-- from VW_Reporte_Generos
+
+
