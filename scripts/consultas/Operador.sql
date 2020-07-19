@@ -24,3 +24,8 @@
 -- select O.Nombres, V.CantidadTotalProductos
 -- from Operador as O
 --     inner join Ventas as V on V.IDOperador = O.ID
+
+-- Operadores activos
+-- select *
+-- from operador
+-- where Alta = 1

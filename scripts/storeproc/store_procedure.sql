@@ -42,4 +42,26 @@
 
 -- exec SP_datos_operador 'javier'
 
+-- Store procedure para obtener la fecha de registro de un Cliente
+-- create PROCEDURE SP_fecha_registro_cliente(
+--     @CUIL
+-- )
+-- as
+-- BEGIN
+--     select C.FechaReg
+--     from Cliente as C
+--     where C.CUIL = @CUIL
+-- END
+
+-- drop procedure SP_fecha_registro_cliente
+
+-- exec SP_fecha_registro_cliente 20
+
+
+-- Store procedure para ingresar un nuevo Operador ( todo )
+
+-- Store procedure para ingresar un nuevo Cliente ( todo )
+
+
+
 
