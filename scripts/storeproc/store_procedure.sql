@@ -22,7 +22,25 @@
 -- BEGIN
 --     select P.Stock
 --     from Producto as P
---     where P.Descripcion = Descripcion
+--     where P.Descripcion = @Descripcion
 -- end
 
 -- exec SP_cantidad_stock_producto 'pantalon'
+
+-- Store procedure para obtener datos de un Operador
+create PROCEDURE SP_datos_operador(
+    @Username varchar(100)
+)
+as
+BEGIN
+    select O.Usuario, O.Nombres, O.Apellidos, O.Clave
+    from Operador as O
+    where O.Usuario = @Username
+END
+
+drop PROCEDURE SP_datos_operador
+
+
+exec SP_datos_operador 'javier'
+
+
