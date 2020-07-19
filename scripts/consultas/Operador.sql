@@ -19,3 +19,8 @@
 --     where O.ID = V.IDOperador
 -- )
 -- from Operador as O
+
+-- Operador con mayor cantidad de ventas: todo
+-- select O.Nombres, V.CantidadTotalProductos
+-- from Operador as O
+--     inner join Ventas as V on V.IDOperador = O.ID

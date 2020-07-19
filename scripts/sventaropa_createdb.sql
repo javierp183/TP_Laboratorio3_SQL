@@ -1,3 +1,5 @@
+-- remvoe database
+drop database sventaropa
 create database sventaropa
 use sventaropa
 Create Table Operador
@@ -7,7 +9,9 @@ Create Table Operador
     Usuario varchar(100) not null,
     Nombres varchar(100) not null,
     Apellidos varchar(100) not null,
-    Clave varchar(100) not null check (len(Clave) >= 32)
+    Clave varchar(100) not null check (len(Clave) >= 32),
+    FechaReg date null,
+    Alta bit not null
 )
 Create Table Cliente
 (
@@ -17,8 +21,9 @@ Create Table Cliente
     Nombres varchar(100) not null,
     Email varchar(100) not null,
     Sexo char null,
-    CUIL int not null,
-    FechaNac date null
+    CUIL bigint not null check (len(CUIL) >= 11),
+    FechaNac date null,
+    FechaReg date null
 )
 Create Table Producto
 (
@@ -26,7 +31,8 @@ Create Table Producto
     Descripcion varchar(100) not null,
     Color varchar(100) not null,
     Precio money not null,
-    Stock integer not null
+    Stock integer not null,
+    FechaReg date null
 )
 CREATE TABLE Pais
 (
