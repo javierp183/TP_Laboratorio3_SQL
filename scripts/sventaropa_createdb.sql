@@ -1,12 +1,14 @@
 -- remvoe database
 drop database sventaropa
+-- create database
 create database sventaropa
+-- Use database
 use sventaropa
 Create Table Operador
 (
     ID bigint not null identity (1, 1),
     IDPais bigint not null,
-    Usuario varchar(100) not null,
+    Usuario varchar(100) not null UNIQUE,
     Nombres varchar(100) not null,
     Apellidos varchar(100) not null,
     Clave varchar(100) not null check (len(Clave) >= 32),
@@ -19,7 +21,7 @@ Create Table Cliente
     IDPais bigint not null,
     Apellidos varchar(100) not null,
     Nombres varchar(100) not null,
-    Email varchar(100) not null,
+    Email varchar(100) not null UNIQUE,
     Sexo char null,
     CUIL bigint not null check (len(CUIL) >= 11),
     FechaNac date null,
@@ -30,14 +32,14 @@ Create Table Producto
     ID bigint not null identity (1, 1),
     Descripcion varchar(100) not null,
     Color varchar(100) not null,
-    Precio money not null,
-    Stock integer not null,
+    Precio money not null check (Precio >= 0),
+    Stock integer not null check (Stock >= 0),
     FechaReg date null
 )
 CREATE TABLE Pais
 (
     ID bigint not null identity (1, 1),
-    Nombre varchar(100) not null
+    Nombre varchar(100) not null UNIQUE
 )
 create table Ventas
 (

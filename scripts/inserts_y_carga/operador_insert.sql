@@ -7,6 +7,6 @@
 -- Apellido: Apellido del Operador
 -- Clave: Clave de 30 caracteres ( minimo requisito para el hash md5 )
 -- insert into Operador
---     (IDPais,Usuario, Nombres, Apellidos, Clave)
+--     (IDPais,Usuario, Nombres, Apellidos, Clave, FechaReg, Alta)
 -- VALUES
---     (1, 'javier', 'Javier', 'Pereyra', '0123456789012345678901234567890123456789')
+--     (1, 'javier', 'Javier', 'Pereyra', '0123456789012345678901234567890123456789', CAST(N'2020-06-19' AS Date), 1)
