@@ -7,7 +7,8 @@
 -- Sexo: M -> Masculino , F -> Femenino
 -- CUIL: Numero de CUIL
 -- FechaNac: Fecha de nacimiento del cliente
--- INSERT into Cliente
---     (IDPais, Apellidos, Nombres, Email, Sexo, CUIL, FechaNac)
--- VALUES
---     (1, 'Sarmiento', 'Torres', 'sarmiento@gmail.com', 'M', '21333', CAST(N'1990-10-02' AS Date))
+-- FechaReg: Fecha de registro del usuario.
+INSERT into Cliente
+    (IDPais, Apellidos, Nombres, Email, Sexo, CUIL, FechaNac, FechaReg)
+VALUES
+    (1, 'Dorrego', 'Perez', 'dorrego@gmail.com', 'M', '20111119558', CAST(N'1986-10-02' AS Date), CAST(N'2020-06-19' AS Date))
