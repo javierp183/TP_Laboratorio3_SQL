@@ -16,6 +16,16 @@ def mensaje():
     Screen().input("Press [Enter] to continue")
 
 
+def ingreso():
+    print("ingrese nombre:")
+    nombre = input()
+    print("tu nombre es {}".format(nombre))
+    Screen().input("Press [Enter] to continue")
+
+
+# telecentro: 21337970 reclamo internet
+
+
 def main():
 
     # Create the root menu
@@ -37,6 +47,7 @@ def main():
         FunctionItem("Listar Ventas por Producto 4", action, args=["four"])
     )
     menu.append_item(FunctionItem("Listar Clientes por Pais 5", mensaje))
+    menu.append_item(FunctionItem("Tu nombre", ingreso))
 
     # Show the menu
     menu.start()

@@ -1,23 +1,22 @@
 sqlalchemy
 pyodbc
-
-import pyodbc
+console-menu
 
 # Some other example server values are
 # server = 'localhost\sqlexpress' # for a named instance
 # server = 'myserver,port' # to specify an alternate port
-server = "tcp:localhost"
-database = "Bookworm"
-username = "sa"
-password = "h51kolv3!"
-cnxn = pyodbc.connect(
-    "DRIVER={ODBC Driver 17 for SQL Server};SERVER="
-    + server
-    + ";DATABASE="
-    + database
-    + ";UID="
-    + username
-    + ";PWD="
-    + password
-)
-cursor = cnxn.cursor()
+#server = "tcp:localhost"
+#database = "Bookworm"
+#username = "sa"
+#password = "h51kolv3!"
+#cnxn = pyodbc.connect(
+#    "DRIVER={ODBC Driver 17 for SQL Server};SERVER="
+#    + server
+#    + ";DATABASE="
+#    + database
+#    + ";UID="
+#    + username
+#    + ";PWD="
+#    + password
+#)
+#cursor = cnxn.cursor()
