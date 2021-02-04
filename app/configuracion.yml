@@ -1,0 +1,8 @@
+---
+database:
+  nombre: sventaropa
+  puerto: 1443
+  host: localhost
+  driver: "{ODBC Driver 17 for SQL Server}"
+  usuario: sa
+  clave: h51kolv3!

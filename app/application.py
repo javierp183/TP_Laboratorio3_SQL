@@ -1,5 +1,6 @@
 from consolemenu import *
 from consolemenu.items import *
+from database import Operador
 
 
 class Listados:
