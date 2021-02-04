@@ -1,10 +1,7 @@
 from consolemenu import *
 from consolemenu.items import *
 from database import Operador
-
-
-class Listados:
-    pass
+from string import Template
 
 
 def action(name):
@@ -12,8 +9,25 @@ def action(name):
     Screen().input("Press [Enter] to continue")
 
 
-def mensaje():
-    print("salida del mensaje")
+def buscar_operador_por_usuario():
+    # usuario = input("Ingrese Usuario del Operador: ")
+    usr = Operador().atributos(usuario="javier")
+    print(usr)
+
+    # myt = Template(
+    #     "\t Pais: $pais \n \
+    #     Usuario: $usuario \n \
+    #     Nombre(s): $nombre \n \
+    #     Apellido(s): $apellido"
+    # )
+    # mys = myt.substitute(
+    #     pais="{}".format(usr[1]),
+    #     usuario="{}".format(usr[2]),
+    #     nombre="{}".format(usr[3]),
+    #     apellido="{}".format(usr[4]),
+    # )
+    # print(mys)
+
     Screen().input("Press [Enter] to continue")
 
 
@@ -41,13 +55,17 @@ def main():
     )  # Customize the exit text
 
     # Add all the items to the root menu
-    menu.append_item(FunctionItem("Listar Operadores 1", action, args=["one"]))
+    menu.append_item(
+        FunctionItem("Listar Atributos del Operador", buscar_operador_por_usuario)
+    )
     menu.append_item(FunctionItem("Listar Clientes 2", action, args=["two"]))
     menu.append_item(FunctionItem("Listar Ventas 3", action, args=["three"]))
     menu.append_item(
         FunctionItem("Listar Ventas por Producto 4", action, args=["four"])
     )
-    menu.append_item(FunctionItem("Listar Clientes por Pais 5", mensaje))
+    menu.append_item(
+        FunctionItem("Listar Clientes por Pais 5", buscar_operador_por_usuario)
+    )
     menu.append_item(FunctionItem("Tu nombre", ingreso))
 
     # Show the menu

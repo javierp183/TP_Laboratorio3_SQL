@@ -29,3 +29,11 @@
 -- select *
 -- from operador
 -- where Alta = 1
+
+-- Listar Operadores
+select *
+from operador
+
+select O.ID, O.IDPais, O.Usuario, O.Nombres, O.Apellidos, O.Clave, convert(varchar,O.FechaReg)
+from Operador as O
+where usuario = 'javier';
