@@ -95,14 +95,13 @@ class Database:
 class Operador(Database):
     def atributos(self, usuario):
         return self.execquery(
-            "select O.ID,O.IDPais,O.Usuario,O.Nombres,O.Apellidos,O.Clave \
+            "select O.ID,O.IDPais,O.Usuario,O.Nombres,O.Apellidos,O.Clave,O.FechaReg \
             from Operador as O where usuario = '{}';".format(
                 usuario
             )
         )[0]
 
     def agregar(self):
-
         pass
 
     def borrar(self):
@@ -115,8 +114,9 @@ class Operador(Database):
 class Cliente(Database):
     def atributos(self, email):
         return self.execquery(
-            "select C.ID,C.IDPais,C.Apellidos,C.Nombres,C.Email,C.Sexo,C.FechaNac,C.Clave \
-            from Cliente as C where C.Email = '{}';".format(
+            "select C.IDPais, C.Nombres, C.Apellidos, C.Email, C.Sexo, C.CUIL, C.FechaNac, C.FechaReg \
+            from Cliente as C \
+            where C.Email = '{}';".format(
                 email
             )
         )[0]
@@ -139,6 +139,9 @@ class Producto(Database):
                 Id
             )
         )[0]
+
+    def listar(self):
+        return self.execquery("select * from Producto")
 
     def agregar(self):
         pass
@@ -178,6 +181,20 @@ class Ventas(Database):
             )
         )[0]
         pass
+
+    def agregar(self):
+        pass
+
+    def borrar(self):
+        pass
+
+    def actualizar(self):
+        pass
+
+
+class Pais(Database):
+    def lista(self):
+        return self.execquery("select * from Pais")
 
     def agregar(self):
         pass
