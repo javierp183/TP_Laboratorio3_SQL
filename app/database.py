@@ -32,6 +32,7 @@
 
 import pyodbc
 from loader import Config
+import datetime
 
 # Configuracion de base de datos
 config = Config().settings()
@@ -101,7 +102,26 @@ class Operador(Database):
             )
         )[0]
 
-    def agregar(self):
+    def agregar(self, pais, usuario, nombre, apellido, clave, alta):
+        fecha = datetime.datetime.now()
+        print(pais)
+        print(usuario)
+        print(nombre)
+        print(apellido)
+        print(clave)
+        print(alta)
+        print(fecha.date())
+        print(
+            "insert into Operador(IDPais,Usuario,Nombres,Apellidos,Clave,FechaReg,Alta) values ('{}','{}','{}','{}','{}',CAST(N'{}' AS Date),{});".format(
+                pais, usuario, nombre, apellido, clave, fecha.date(), alta
+            )
+        )
+        return self.execquery(
+            "insert into Operador(IDPais,Usuario,Nombres,Apellidos,Clave,FechaReg,Alta) values ('{}','{}','{}','{}','{}',CAST(N'{}' AS Date),{});".format(
+                pais, usuario, nombre, apellido, clave, fecha.date(), alta
+            )
+        )
+
         pass
 
     def borrar(self):
