@@ -75,6 +75,12 @@ def eliminar_operador():
     Screen().input("Press [Enter] to continue")
 
 
+def actualiar_datos_operador():
+    usuario = input("Ingrese nombre de usuario: ")
+    Operador().actualizar(usuario=usuario)
+    Screen().input("Press [Enter] to continue")
+
+
 def buscar_cliente_por_email():
     email = input("Ingrese Email del Cliente: ")
     clt = Cliente().atributos(email)
