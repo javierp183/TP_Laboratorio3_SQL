@@ -104,13 +104,6 @@ class Operador(Database):
 
     def agregar(self, pais, usuario, nombre, apellido, clave, alta):
         fecha = datetime.datetime.now()
-        print(pais)
-        print(usuario)
-        print(nombre)
-        print(apellido)
-        print(clave)
-        print(alta)
-        print(fecha.date())
         print(
             "insert into Operador(IDPais,Usuario,Nombres,Apellidos,Clave,FechaReg,Alta) values ('{}','{}','{}','{}','{}',CAST(N'{}' AS Date),{});".format(
                 pais, usuario, nombre, apellido, clave, fecha.date(), alta
@@ -124,8 +117,16 @@ class Operador(Database):
 
         pass
 
-    def borrar(self):
+    def baja_logica(self, usuario):
         pass
+
+    def borrar(self, usuario):
+        return self.execquery(
+            " \
+        delete from Operador where usuario = '{}';".format(
+                usuario
+            )
+        )
 
     def actualizar(self):
         pass

@@ -68,6 +68,13 @@ def ingresar_nuevo_operador():
     Screen().input("Press [Enter] to continue")
 
 
+def eliminar_operador():
+    usuario = input("Ingrese nombre de usuario de Operador: ")
+    Operador().borrar(usuario=usuario)
+    print("Operador {} eliminado".format(usuario))
+    Screen().input("Press [Enter] to continue")
+
+
 def buscar_cliente_por_email():
     email = input("Ingrese Email del Cliente: ")
     clt = Cliente().atributos(email)
@@ -126,6 +133,7 @@ def main():
         FunctionItem("Informacion del Operador", buscar_operador_por_usuario)
     )
     menu.append_item(FunctionItem("Ingrese nuevo Operador", ingresar_nuevo_operador))
+    menu.append_item(FunctionItem("Eliminar Operador", eliminar_operador))
     menu.append_item(FunctionItem("Informaicon del Cliente", buscar_cliente_por_email))
     menu.append_item(FunctionItem("Listar Paises registrados", listar_paises))
     menu.append_item(FunctionItem("Listar Productos", listar_productos))
