@@ -111,6 +111,37 @@ def buscar_cliente_por_email():
     Screen().input("Press [Enter] to continue")
 
 
+def ingresar_nuevo_cliente():
+    data = {}
+    pais = input("Ingrese el Pais: ")
+    apellido = input("Ingrese apellido del Cliente: ")
+    nombre = input("Ingrese nombre del Cliente: ")
+    email = input("Ingrese el email: ")
+    sexo = input("Ingrese el sexo (M|F): ")
+    cuil = input("Ingrese el Cuil: ")
+    fechanac = input("Ingrese la fecha de nacimiento: ")
+    date_time_obj = datetime.strptime(fechanac, "%d/%m/%y")
+    fechareg = datetime.now().date()
+
+    data["pais"] = pais
+    data["apellido"] = apellido
+    data["nombre"] = nombre
+    data["email"] = email
+    data["cuil"] = cuil
+    data["fechanac"] = date_time_obj.date()
+    data["fechareg"] = fechareg
+    data["sexo"] = sexo
+
+    Cliente().agregar(data)
+    Screen().input("Press [Enter] to continue")
+
+
+def borrar_cliente():
+    email = input("Ingrese email de cliente a borrar: ")
+    Cliente().borrar(email)
+    Screen().input("Press [Enter] to continue")
+
+
 def buscar_product_por_descripcion():
     descripcion = input("Ingrese descripcion: ")
     pass
@@ -164,6 +195,8 @@ def main():
     menu.append_item(FunctionItem("Actualizar Operador", actualizar_datos_operador))
     menu.append_item(FunctionItem("Eliminar Operador", eliminar_operador))
     menu.append_item(FunctionItem("Informacion del Cliente", buscar_cliente_por_email))
+    menu.append_item(FunctionItem("Ingrese nuevo Cliente", ingresar_nuevo_cliente))
+    menu.append_item(FunctionItem("Eliminar Cliente", borrar_cliente))
     menu.append_item(FunctionItem("Listar Paises registrados", listar_paises))
     menu.append_item(FunctionItem("Listar Productos", listar_productos))
     menu.append_item(FunctionItem("Tu nombre", ingreso))

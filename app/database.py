@@ -172,11 +172,33 @@ class Cliente(Database):
             )
         )[0]
 
-    def agregar(self):
-        pass
+    def agregar(self, data):
+        print(
+            "insert into Cliente(IDPais,Apellidos,Nombres,Email,Sexo,CUIL,FechaNac,FechaReg) values (1,'{}','{}','{}','{}','{}',CAST(N'{}' AS Date),CAST(N'{}' AS Date));".format(
+                data["apellido"],
+                data["nombre"],
+                data["email"],
+                data["sexo"],
+                data["cuil"],
+                data["fechanac"],
+                data["fechareg"],
+            )
+        )
+        return self.execquery(
+            "insert into Cliente(IDPais,Apellidos,Nombres,Email,Sexo,CUIL,FechaNac,FechaReg) values (1,'{}','{}','{}','{}','{}',CAST(N'{}' AS Date),CAST(N'{}' AS Date));".format(
+                data["apellido"],
+                data["nombre"],
+                data["email"],
+                data["sexo"],
+                data["cuil"],
+                data["fechanac"],
+                data["fechareg"],
+            )
+        )
 
-    def borrar(self):
-        pass
+    def borrar(self, email):
+        print("delete from Cliente where email = '{}'".format(email))
+        return self.execquery("delete from Cliente where email = '{}'".format(email))
 
     def actualizar(self):
         pass
