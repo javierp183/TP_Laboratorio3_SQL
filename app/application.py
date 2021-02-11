@@ -33,6 +33,11 @@ from database import Operador, Cliente, Pais, Producto
 from string import Template
 
 
+def listar_operadores():
+    print(Operador().listar())
+    Screen().input("Press [Enter] to continue")
+
+
 def buscar_operador_por_usuario():
     usuario = input("Ingrese Usuario del Operador: ")
     usr = Operador().atributos(usuario)
@@ -100,6 +105,11 @@ def actualizar_datos_operador():
         ndata["alta"] = alta
 
         Operador().actualizar(usuario=usuario, update=opcion, usrdata=ndata)
+    Screen().input("Press [Enter] to continue")
+
+
+def listar_clientes():
+    print(Cliente().listar())
     Screen().input("Press [Enter] to continue")
 
 
@@ -188,12 +198,14 @@ def main():
     )  # Customize the exit text
 
     # Add all the items to the root menu
+    menu.append_item(FunctionItem("Listar Operadores", listar_operadores))
     menu.append_item(
         FunctionItem("Informacion del Operador", buscar_operador_por_usuario)
     )
     menu.append_item(FunctionItem("Ingrese nuevo Operador", ingresar_nuevo_operador))
     menu.append_item(FunctionItem("Actualizar Operador", actualizar_datos_operador))
     menu.append_item(FunctionItem("Eliminar Operador", eliminar_operador))
+    menu.append_item(FunctionItem("Listar Clientes", listar_clientes))
     menu.append_item(FunctionItem("Informacion del Cliente", buscar_cliente_por_email))
     menu.append_item(FunctionItem("Ingrese nuevo Cliente", ingresar_nuevo_cliente))
     menu.append_item(FunctionItem("Eliminar Cliente", borrar_cliente))

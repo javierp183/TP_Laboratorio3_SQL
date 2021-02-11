@@ -161,6 +161,9 @@ class Operador(Database):
                 )
             )
 
+    def listar(self):
+        return self.execquery("select * from Operador")
+
 
 class Cliente(Database):
     def atributos(self, email):
@@ -202,6 +205,9 @@ class Cliente(Database):
 
     def actualizar(self):
         pass
+
+    def listar(self):
+        return self.execquery("select * from Cliente;")
 
 
 class Producto(Database):
