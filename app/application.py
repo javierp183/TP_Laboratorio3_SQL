@@ -26,6 +26,7 @@
 #  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 
+from datetime import datetime
 from consolemenu import *
 from consolemenu.items import *
 from database import Operador, Cliente, Pais, Producto
@@ -69,15 +70,36 @@ def ingresar_nuevo_operador():
 
 
 def eliminar_operador():
-    usuario = input("Ingrese nombre de usuario de Operador: ")
+    usuario = input("Ingrese nombre de usuario del Operador: ")
     Operador().borrar(usuario=usuario)
     print("Operador {} eliminado".format(usuario))
     Screen().input("Press [Enter] to continue")
 
 
-def actualiar_datos_operador():
+def actualizar_datos_operador():
     usuario = input("Ingrese nombre de usuario: ")
-    Operador().actualizar(usuario=usuario)
+    usr = Operador().actualizar(usuario=usuario)
+    print(usr)
+    print("Desea actualizar los datos de este usuario?")
+    opcion = input("0 no | 1 si: ")
+    if opcion:
+        ndata = {}
+        pais = input("Nuevo Pais: ")
+        usuario = input("Nuevo Usuario: ")
+        nombre = input("Nuevo nombre: ")
+        apellido = input("Nuevo apellido: ")
+        clave = input("Nueva clave: ")
+        fecha = datetime.now().date()
+        alta = input("Estado de Alta: ")
+        ndata["pais"] = pais
+        ndata["usuario"] = usuario
+        ndata["nombre"] = nombre
+        ndata["apellido"] = apellido
+        ndata["clave"] = clave
+        ndata["fecha"] = fecha
+        ndata["alta"] = alta
+
+        Operador().actualizar(usuario=usuario, update=opcion, usrdata=ndata)
     Screen().input("Press [Enter] to continue")
 
 
@@ -139,8 +161,9 @@ def main():
         FunctionItem("Informacion del Operador", buscar_operador_por_usuario)
     )
     menu.append_item(FunctionItem("Ingrese nuevo Operador", ingresar_nuevo_operador))
+    menu.append_item(FunctionItem("Actualizar Operador", actualizar_datos_operador))
     menu.append_item(FunctionItem("Eliminar Operador", eliminar_operador))
-    menu.append_item(FunctionItem("Informaicon del Cliente", buscar_cliente_por_email))
+    menu.append_item(FunctionItem("Informacion del Cliente", buscar_cliente_por_email))
     menu.append_item(FunctionItem("Listar Paises registrados", listar_paises))
     menu.append_item(FunctionItem("Listar Productos", listar_productos))
     menu.append_item(FunctionItem("Tu nombre", ingreso))

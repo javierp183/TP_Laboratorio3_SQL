@@ -128,8 +128,38 @@ class Operador(Database):
             )
         )
 
-    def actualizar(self):
-        pass
+    def actualizar(self, usuario, update=0, usrdata=0):
+        if not update:
+            data = {}
+            usr = self.execquery(
+                "select * from Operador where usuario = '{}';".format(usuario)
+            )[0]
+
+            data = {
+                "Pais": usr[0],
+                "Usuario": usr[1],
+                "Nombre": usr[2],
+                "Apellido": usr[3],
+                "Clave": usr[4],
+                "FechaReg": usr[5],
+                "Alta": usr[6],
+            }
+
+            return data
+
+        if update:
+            print("usted eligio actualizar")
+            self.execquery(
+                "Update Operador set IDPais='Argentina', Usuario='{}', Nombres='{}', Apellidos='{}', Clave='{}', FechaReg='{}', Alta='{}' where Usuario = '{}';".format(
+                    usrdata["usuario"],
+                    usrdata["nombre"],
+                    usrdata["apellido"],
+                    usrdata["clave"],
+                    usrdata["fecha"],
+                    usrdata["alta"],
+                    usrdata["usuario"],
+                )
+            )
 
 
 class Cliente(Database):
