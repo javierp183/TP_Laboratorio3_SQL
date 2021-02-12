@@ -163,6 +163,17 @@ def listar_paises():
     pass
 
 
+def buscar_pais():
+    pais_nombre = input("ingrese nombre de pais: ")
+    pass
+
+
+def ingresar_pais():
+    pais_nombre = input("Ingrese nombre de pais: ")
+    Pais().agregar(pais_nombre)
+    Screen().input("Press [Enter] to continue")
+
+
 def listar_productos():
     print(Producto().listar())
     Screen().input("Press [Enter] to continue")
@@ -200,7 +211,7 @@ def main():
     # Add all the items to the root menu
     menu.append_item(FunctionItem("Listar Operadores", listar_operadores))
     menu.append_item(
-        FunctionItem("Informacion del Operador", buscar_operador_por_usuario)
+        FunctionItem("dInformacion del Operador", buscar_operador_por_usuario)
     )
     menu.append_item(FunctionItem("Ingrese nuevo Operador", ingresar_nuevo_operador))
     menu.append_item(FunctionItem("Actualizar Operador", actualizar_datos_operador))
@@ -210,6 +221,7 @@ def main():
     menu.append_item(FunctionItem("Ingrese nuevo Cliente", ingresar_nuevo_cliente))
     menu.append_item(FunctionItem("Eliminar Cliente", borrar_cliente))
     menu.append_item(FunctionItem("Listar Paises registrados", listar_paises))
+    menu.append_item(FunctionItem("Ingrsar nuevo Pais", ingresar_pais))
     menu.append_item(FunctionItem("Listar Productos", listar_productos))
     menu.append_item(FunctionItem("Tu nombre", ingreso))
 

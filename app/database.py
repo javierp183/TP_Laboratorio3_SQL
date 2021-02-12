@@ -275,7 +275,8 @@ class Pais(Database):
     def lista(self):
         return self.execquery("select * from Pais")
 
-    def agregar(self):
+    def agregar(self, pais):
+        print("insert into Pais (Nombre) values ('{}')".format(pais))
         pass
 
     def borrar(self):
