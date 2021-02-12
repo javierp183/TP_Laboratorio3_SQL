@@ -165,12 +165,19 @@ def listar_paises():
 
 def buscar_pais():
     pais_nombre = input("ingrese nombre de pais: ")
+    Screen().input("Press [Enter] to continue")
     pass
 
 
 def ingresar_pais():
     pais_nombre = input("Ingrese nombre de pais: ")
     Pais().agregar(pais_nombre)
+    Screen().input("Press [Enter] to continue")
+
+
+def eliminar_pais():
+    pais_nombre = input("Ingrese el nombre del pais a eliminar: ")
+    Pais().borrar(pais_nombre)
     Screen().input("Press [Enter] to continue")
 
 
@@ -221,7 +228,8 @@ def main():
     menu.append_item(FunctionItem("Ingrese nuevo Cliente", ingresar_nuevo_cliente))
     menu.append_item(FunctionItem("Eliminar Cliente", borrar_cliente))
     menu.append_item(FunctionItem("Listar Paises registrados", listar_paises))
-    menu.append_item(FunctionItem("Ingrsar nuevo Pais", ingresar_pais))
+    menu.append_item(FunctionItem("Ingresar nuevo Pais", ingresar_pais))
+    menu.append_item(FunctionItem("Eliminar Pais", eliminar_pais))
     menu.append_item(FunctionItem("Listar Productos", listar_productos))
     menu.append_item(FunctionItem("Tu nombre", ingreso))
 
