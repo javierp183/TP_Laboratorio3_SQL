@@ -171,13 +171,15 @@ def buscar_pais():
 
 def ingresar_pais():
     pais_nombre = input("Ingrese nombre de pais: ")
-    Pais().agregar(pais_nombre)
+    if Pais().agregar(pais_nombre) == "23000":
+        print("Este registro ya existe, por favor ingrese otro")
+    else:
+        print("Nuego registro ingresado")
     Screen().input("Press [Enter] to continue")
 
 
 def eliminar_pais():
     pais_nombre = input("Ingrese el nombre del pais a eliminar: ")
-    Pais().borrar(pais_nombre)
     Screen().input("Press [Enter] to continue")
 
 

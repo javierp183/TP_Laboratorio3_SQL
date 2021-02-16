@@ -70,12 +70,24 @@ class Database:
         self.cursor = cnxn.cursor()
 
     def execquery(self, query):
-        self.cursor.execute("{}".format(query))
         try:
+            self.cursor.execute("{}".format(query))
+
             return self.cursor.fetchall()
-        except pyodbc.ProgrammingError as e:
-            if "Previous SQL was not a query." in str(e):
-                pass
+        except pyodbc.Error as ex:
+            return ex.args[0]
+
+        # except:
+        #    return None
+        # return
+
+        # try:
+        #     return self.cursor.fetchall()
+        # except pyodbc.ProgrammingError as e:
+        #     print("Salida de pyodbc error")
+        #     print(str(e))
+        #     if "Previous SQL was not a query." in str(e):
+        #         return "Previous SQL was not a query."
 
     def createdb(self, database):
         """ Create database """
