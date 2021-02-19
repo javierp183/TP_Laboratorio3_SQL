@@ -31,10 +31,12 @@ from consolemenu import *
 from consolemenu.items import *
 from database import Operador, Cliente, Pais, Producto
 from string import Template
+import subprocess
 
 
 def listar_operadores():
-    print(Operador().listar())
+    # print(Operador().listar())
+    subprocess.call(["python", "./operador.py"])
     Screen().input("Press [Enter] to continue")
 
 
@@ -128,8 +130,8 @@ def ingresar_nuevo_cliente():
     nombre = input("Ingrese nombre del Cliente: ")
     email = input("Ingrese el email: ")
     sexo = input("Ingrese el sexo (M|F): ")
-    cuil = input("Ingrese el Cuil: ")
-    fechanac = input("Ingrese la fecha de nacimiento: ")
+    cuil = input("Ingrese el Cuil: ")  # transformar a unique en la base de datos
+    fechanac = input("Ingrese la fecha de nacimiento (dd/mm/yy): ")
     date_time_obj = datetime.strptime(fechanac, "%d/%m/%y")
     fechareg = datetime.now().date()
 
@@ -142,7 +144,10 @@ def ingresar_nuevo_cliente():
     data["fechareg"] = fechareg
     data["sexo"] = sexo
 
-    Cliente().agregar(data)
+    if Cliente().agregar(data) == "23000":
+        print("Este registro ya existe, por favor intrese otro")
+    else:
+        print("Nuevo registro ingresado")
     Screen().input("Press [Enter] to continue")
 
 
