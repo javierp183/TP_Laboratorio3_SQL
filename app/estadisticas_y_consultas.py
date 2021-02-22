@@ -31,4 +31,4 @@ from consolemenu.items import *
 from string import Template
 import subprocess
 
-print("Menu de ventas")
+print("Menu de consultas y estadisticas")
