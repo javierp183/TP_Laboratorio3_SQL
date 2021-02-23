@@ -57,6 +57,7 @@ def actualizar_datos_operador():
     usuario = input("Ingrese nombre de usuario: ")
     usr = Operador().actualizar(usuario=usuario)
     print(usr)
+    # print(usr["Usuario"])
     print("Desea actualizar los datos de este usuario?")
     opcion = input("0 no | 1 si: ")
     if opcion:
@@ -75,6 +76,7 @@ def actualizar_datos_operador():
         ndata["clave"] = clave
         ndata["fecha"] = fecha
         ndata["alta"] = alta
+        ndata["usuario_original"] = usr["Usuario"]
 
         Operador().actualizar(usuario=usuario, update=opcion, usrdata=ndata)
     Screen().input("Press [Enter] to continue")
