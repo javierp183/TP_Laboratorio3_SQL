@@ -204,6 +204,11 @@ class Operador(Database):
             "Update Operador set Alta = 0 where Usuario = '{}'".format(usuario)
         )
 
+    def alta(self, usuario):
+        return self.execquery(
+            "Update Operador set Alta = 1 where Usuario = '{}'".format(usuario)
+        )
+
 
 class Cliente(Database):
     def atributos(self, email):

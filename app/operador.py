@@ -108,6 +108,13 @@ def baja():
     Screen().input("Press [Enter] to continue")
 
 
+def alta():
+    usuario = input("Ingresar nombre de usuario: ")
+    Operador().alta(usuario)
+    print("Usuario: {} dado de alta".format(usuario))
+    Screen().input("Press [Enter] to continue")
+
+
 def main():
     # Create the root menu
     menu = MultiSelectMenu(
@@ -127,6 +134,7 @@ def main():
     )
     menu.append_item(FunctionItem("Ingrese nuevo Operador", ingresar_nuevo_operador))
     menu.append_item(FunctionItem("Actualizar Operador", actualizar_datos_operador))
+    menu.append_item(FunctionItem("Alta de Operador", alta))
     menu.append_item(FunctionItem("Baja de Operador", baja))
     menu.append_item(FunctionItem("Eliminar Operador", eliminar_operador))
     menu.append_item(
