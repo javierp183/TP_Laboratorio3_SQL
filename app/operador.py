@@ -3,10 +3,24 @@ from consolemenu import *
 from consolemenu.items import *
 from database import Operador
 from string import Template
+from password import encriptacion
+
+
+def valido_usuario():
+    usuario = input("Ingrese el nombre de usuario del Operador: ")
+    clave_db = Operador().clave(usuario)
+    clave = input("Ingrese la clave del usuario: ")
+    clave = encriptacion(clave)
+
+    if clave == clave_db:
+        return True
+
+    return False
 
 
 def listar():
     print(Operador().listar())
+    # valido_usuario()
     Screen().input("Press [Enter] to continue")
 
 
@@ -40,8 +54,20 @@ def ingresar_nuevo_operador():
     nombre = input("Ingrese nombre del Operador: ")
     apellido = input("Ingrese apellido: ")
     clave = input("Ingrese clave: ")
+
+    pais = pais.lower()
+    usuario = usuario.lower()
+    nombre = nombre.lower()
+    apellido = apellido.lower()
+    clave = encriptacion(clave.lower())
+
     Operador().agregar(
-        pais="1", usuario=usuario, nombre=nombre, apellido=apellido, clave=clave, alta=1
+        pais="1",
+        usuario=usuario,
+        nombre=nombre,
+        apellido=apellido,
+        clave=clave,
+        alta=1,
     )
     Screen().input("Press [Enter] to continue")
 
@@ -156,4 +182,7 @@ def main():
     menu.join()
 
 
-main()
+if valido_usuario():
+    main()
+else:
+    print("Usuario o Clave no valido!")
