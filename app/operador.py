@@ -82,6 +82,32 @@ def actualizar_datos_operador():
     Screen().input("Press [Enter] to continue")
 
 
+def cantidad_de_operadoras():
+    print("La cantidad de operadores es: {}".format(Operador().cantidad()))
+    Screen().input("Press [Enter] to continue")
+
+
+def cantidad_de_operadores_activos():
+    print("La cantidad de operadores activos es: {}".format(Operador().activos()))
+    Screen().input("Press [Enter] to continue")
+
+
+def cantidad_de_operadores_noactivos():
+    print("La cantidad de operadores (no)activos es: {}".format(Operador().noactivos()))
+    Screen().input("Press [Enter] to continue")
+
+
+def listar_operadores_inactivos():
+    pass
+
+
+def baja():
+    usuario = input("Ingresar nombre de usuario: ")
+    Operador().baja(usuario)
+    print("Usuario: {} dado de baja".format(usuario))
+    Screen().input("Press [Enter] to continue")
+
+
 def main():
     # Create the root menu
     menu = MultiSelectMenu(
@@ -101,7 +127,22 @@ def main():
     )
     menu.append_item(FunctionItem("Ingrese nuevo Operador", ingresar_nuevo_operador))
     menu.append_item(FunctionItem("Actualizar Operador", actualizar_datos_operador))
+    menu.append_item(FunctionItem("Baja de Operador", baja))
     menu.append_item(FunctionItem("Eliminar Operador", eliminar_operador))
+    menu.append_item(
+        FunctionItem("Consultar Cantidad de Operadores", cantidad_de_operadoras)
+    )
+    menu.append_item(
+        FunctionItem(
+            "Consultar Cantidad de Operadores Activos", cantidad_de_operadores_activos
+        )
+    )
+    menu.append_item(
+        FunctionItem(
+            "Consultar Cantidad de Operadores No Activos",
+            cantidad_de_operadores_noactivos,
+        )
+    )
 
     menu.start()
     menu.join()

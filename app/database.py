@@ -190,6 +190,20 @@ class Operador(Database):
     def listar(self):
         return self.execquery("select * from Operador")
 
+    def cantidad(self):
+        return self.execquery("select count(*) from Operador")[0][0]
+
+    def activos(self):
+        return self.execquery("select count(*) from operador where Alta = 1")[0][0]
+
+    def noactivos(self):
+        return self.execquery("select count(*) from operador where Alta = 0")[0][0]
+
+    def baja(self, usuario):
+        return self.execquery(
+            "Update Operador set Alta = 0 where Usuario = '{}'".format(usuario)
+        )
+
 
 class Cliente(Database):
     def atributos(self, email):
