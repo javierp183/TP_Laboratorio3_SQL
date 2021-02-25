@@ -335,3 +335,14 @@ class Pais(Database):
 
     def actualizar(self):
         pass
+
+    def buscar(self, pais):
+        return self.execquery(
+            "select P.Nombre from Pais as P where Nombre = '{}'".format(pais)
+        )[0][0]
+
+    def Id(self, pais):
+        return self.execquery(
+            "select P.ID from Pais as P where Nombre = '{}'".format(pais)
+        )[0][0]
+
