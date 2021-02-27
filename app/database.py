@@ -344,7 +344,7 @@ class Stock(Database):
         pass
 
 
-class Ventas(Database):
+class Venta(Database):
     def atributos(self, Id):
         return self.execquery(
             "select S.ID,S.IDProducto,S.Talle,S.Stock \
@@ -361,6 +361,11 @@ class Ventas(Database):
         pass
 
     def actualizar(self):
+        pass
+
+    def procesar_ventas(self, data):
+        for k, v in data.items():
+            print(k)
         pass
 
 

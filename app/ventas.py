@@ -29,6 +29,47 @@ from datetime import datetime
 from consolemenu import *
 from consolemenu.items import *
 from string import Template
-import subprocess
+from database import Venta
 
-print("Menu de ventas")
+
+def venta():
+    data = {}
+    producto = input("Ingrese los productos a comprar (pantalon,zapatillas,..): ")
+    cantidad = input("Ingrese la cantidad de los mismos (3,2,..): ")
+
+    producto = list(producto.split(","))
+    cantidad = list(cantidad.split(","))
+
+    zip_iterator = zip(producto, cantidad)
+    data = dict(zip_iterator)
+
+    Venta().procesar_ventas(data=data)
+
+    # print("Desea generar el ticket de venta?: ")
+    # ticket = input("[1|SI] [2|NO]")
+    Screen().input("Press [Enter] to continue")
+    pass
+
+
+def main():
+
+    # Create the root menu
+    menu = MultiSelectMenu(
+        "Menu Ventas",
+        "TP laboratorio 3 - SQL Server",
+        epilogue_text=(
+            "Selecciona una o mas opciones separadas por ,(comma) o por extension"
+            "de numeros Por ejemplo:  1,2,3   o   1-4   o   1,3-4"
+        ),
+        exit_option_text="Salir",
+    )  # Customize the exit text
+
+    menu.append_item(FunctionItem("Venta de producto", venta))
+
+    # Show the menu
+    menu.start()
+    menu.join()
+
+
+if __name__ == "__main__":
+    main()
