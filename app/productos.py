@@ -12,6 +12,29 @@ def listar_productos():
     pass
 
 
+def ingresar_producto():
+    data = {}
+    descripcion = input("Ingrese descripcion: ")
+    color = input("Ingrese color de producto: ")
+    precio = input("Ingrese precio: ")
+    stock = input("Ingrese el stock: ")
+
+    data["descripcion"] = descripcion.lower()
+    data["color"] = color.lower()
+    data["precio"] = float(precio)
+    data["stock"] = stock
+    data["fecha"] = datetime.now().date()
+    Producto().agregar(producto=data)
+    print("Producto agregado")
+    Screen().input("Press [Enter] to continue")
+
+
+def borrar_producto():
+    producto = input("Ingrese nombre or descripcion de producto: ")
+    Producto().borrar(producto=producto)
+    Screen().input("Press [Enter] to continue")
+
+
 def main():
 
     # Create the root menu
@@ -26,6 +49,8 @@ def main():
     )  # Customize the exit text
 
     menu.append_item(FunctionItem("Listar Productos", listar_productos))
+    menu.append_item(FunctionItem("Ingresar Producto", ingresar_producto))
+    menu.append_item(FunctionItem("Borrar Producto", borrar_producto))
 
     # Show the menu
     menu.start()

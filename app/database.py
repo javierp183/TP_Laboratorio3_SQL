@@ -108,8 +108,10 @@ class Database:
 class Operador(Database):
     def atributos(self, usuario):
         return self.execquery(
-            "select O.ID,O.IDPais,O.Usuario,O.Nombres,O.Apellidos,O.Clave,O.FechaReg \
-            from Operador as O where usuario = '{}';".format(
+            "select O.ID,P.Nombre,O.Usuario,O.Nombres,O.Apellidos,O.Clave,O.FechaReg \
+            from Operador as O  \
+                inner join Pais as P on P.ID = O.IDPais \
+             where usuario = '{}';".format(
                 usuario
             )
         )[0]
@@ -188,7 +190,11 @@ class Operador(Database):
             )
 
     def listar(self):
-        return self.execquery("select * from Operador")
+        return self.execquery(
+            "select O.ID,P.Nombre,O.Usuario,O.Nombres,O.Apellidos,O.Clave,O.FechaReg \
+            from Operador as O  \
+                inner join Pais as P on P.ID = O.IDPais;"
+        )
 
     def cantidad(self):
         return self.execquery("select count(*) from Operador")[0][0]
@@ -257,7 +263,11 @@ class Cliente(Database):
         pass
 
     def listar(self):
-        return self.execquery("select * from Cliente;")
+        return self.execquery(
+            "select C.ID, P.Nombre, C.Apellidos, C.Nombres, C.Email, C.Sexo, C.CUIL, C.FechaNac, C.FechaReg \
+                                from Cliente as C \
+                                inner join Pais as P on P.ID = C.IDPais;"
+        )
 
 
 class Producto(Database):
@@ -272,11 +282,34 @@ class Producto(Database):
     def listar(self):
         return self.execquery("select * from Producto")
 
-    def agregar(self):
-        pass
+    def agregar(self, producto):
+        return self.execquery(
+            "exec dbo.SP_guardar_producto \
+                  @Descripcion = '{}', \
+                  @Color = '{}', \
+                  @Precio = {}, \
+                  @Stock = {}, \
+                  @FechaReg = '2013-12-12'".format(
+                producto["descripcion"],
+                producto["color"],
+                producto["precio"],
+                producto["stock"],
+            )
+        )
 
-    def borrar(self):
-        pass
+    def borrar(self, producto):
+        print(
+            "exec dbp.SP_borrar_producto \
+                    @Descripcion = '{}'".format(
+                producto
+            )
+        )
+        return self.execquery(
+            "exec dbo.SP_borrar_producto \
+                    @Descripcion = '{}'".format(
+                producto
+            )
+        )
 
     def actualizar(self):
         pass
@@ -291,8 +324,18 @@ class Stock(Database):
             )
         )[0]
 
-    def agregar(self):
-        pass
+    def agregar(self, producto):
+        print(producto)
+        return self.execquery(
+            "exec dbo.SP_guardar_producto \
+                                    @Descripcion = '{}', @Color = '{}', @Precio = '{}', @Stock = {}, @FechaReg = '{}'".format(
+                producto["descripcion"],
+                producto["color"],
+                producto["precio"],
+                producto["stock"],
+                producto["fechareg"],
+            )
+        )
 
     def borrar(self):
         pass

@@ -1,7 +1,7 @@
 from datetime import datetime
 from consolemenu import *
 from consolemenu.items import *
-from database import Operador
+from database import Operador, Pais
 from string import Template
 from password import encriptacion
 
@@ -56,13 +56,14 @@ def ingresar_nuevo_operador():
     clave = input("Ingrese clave: ")
 
     pais = pais.lower()
+    Id_Pais = Pais().Id(pais)
     usuario = usuario.lower()
     nombre = nombre.lower()
     apellido = apellido.lower()
     clave = encriptacion(clave.lower())
 
     Operador().agregar(
-        pais="1",
+        pais=str(Id_Pais),
         usuario=usuario,
         nombre=nombre,
         apellido=apellido,

@@ -50,6 +50,7 @@ def main():
     )  # Customize the exit text
 
     menu.append_item(FunctionItem("Listar Paises registrados", listar_paises))
+    menu.append_item(FunctionItem("Buscar Pais", buscar_pais))
     menu.append_item(FunctionItem("Ingresar nuevo Pais", ingresar_pais))
     menu.append_item(FunctionItem("Eliminar Pais", eliminar_pais))
 
