@@ -35,6 +35,15 @@ def borrar_producto():
     Screen().input("Press [Enter] to continue")
 
 
+def agregar_stock():
+    producto = input("Ingrese el nombre del producto a agregar stock: ")
+    stock = input("Ingrese nuevo stock: ")
+    nuevo_stock = int(Producto().buscar(producto)[0][3]) + int(stock)
+    Producto().actualizar_stock(producto, nuevo_stock)
+    print("Nuevo Stock de '{}' actualizo a '{}'".format(producto, nuevo_stock))
+    Screen().input("Press [Enter] to continue")
+
+
 def main():
 
     # Create the root menu
@@ -51,6 +60,9 @@ def main():
     menu.append_item(FunctionItem("Listar Productos", listar_productos))
     menu.append_item(FunctionItem("Ingresar Producto", ingresar_producto))
     menu.append_item(FunctionItem("Borrar Producto", borrar_producto))
+    menu.append_item(
+        FunctionItem("Agregar o eliminar Stock de Producto", agregar_stock)
+    )
 
     # Show the menu
     menu.start()

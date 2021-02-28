@@ -6,7 +6,12 @@ from string import Template
 
 
 def listar_clientes():
-    print(Cliente().listar())
+    for i in Cliente().listar():
+        print(
+            "Nacionalidad: {} Nombre: {} Apellido: {} email: {} Sexo: {} CUIL: {} Fecha de Naciomiento: {} Fecha de Registro: {}".format(
+                i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8]
+            )
+        )
     Screen().input("Press [Enter] to continue")
 
 

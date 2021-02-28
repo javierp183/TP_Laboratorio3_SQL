@@ -6,21 +6,25 @@ from string import Template
 from password import encriptacion
 
 
-def valido_usuario():
-    usuario = input("Ingrese el nombre de usuario del Operador: ")
-    clave_db = Operador().clave(usuario)
-    clave = input("Ingrese la clave del usuario: ")
-    clave = encriptacion(clave)
+# def valido_usuario():
+#     usuario = input("Ingrese el nombre de usuario del Operador: ")
+#     clave_db = Operador().clave(usuario)
+#     clave = input("Ingrese la clave del usuario: ")
+#     clave = encriptacion(clave)
 
-    if clave == clave_db:
-        return True
+#     if clave == clave_db:
+#         return True
 
-    return False
+#     return False
 
 
 def listar():
-    print(Operador().listar())
-    # valido_usuario()
+    for i in Operador().listar():
+        print(
+            "Nacionalidad: {} Usuario: {} Nombre: {} Apellido: {} Fecha de Ingreso {} Estado: {}".format(
+                i[1], i[2], i[3], i[4], i[6], i[7]
+            )
+        )
     Screen().input("Press [Enter] to continue")
 
 
@@ -183,7 +187,4 @@ def main():
     menu.join()
 
 
-if valido_usuario():
-    main()
-else:
-    print("Usuario o Clave no valido!")
+main()

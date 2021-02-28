@@ -30,9 +30,25 @@ from datetime import datetime
 from consolemenu import *
 from consolemenu.items import *
 
-# from database import Pais, Producto
+from database import Operador
 from string import Template
 import subprocess
+from password import encriptacion
+from os import environ
+
+
+def valido_usuario():
+    usuario = input("Ingrese el nombre de usuario del Operador: ")
+    clave_db = Operador().clave(usuario)
+    clave = input("Ingrese la clave del usuario: ")
+    clave = encriptacion(clave)
+
+    if clave == clave_db:
+        if Operador().estado(usuario):
+            environ["APPUSER"] = usuario
+            return True
+
+    return False
 
 
 def menu_operadores():
@@ -102,4 +118,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    if valido_usuario():
+        main()
+    else:
+        print("Usuario o Clave no valido o Usuario deshabilitado!")

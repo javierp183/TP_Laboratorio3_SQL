@@ -29,11 +29,18 @@ from datetime import datetime
 from consolemenu import *
 from consolemenu.items import *
 from string import Template
-from database import Venta
+from database import Venta, Producto, Operador, Cliente, Ventas_x_Productos
+from os import environ
 
 
 def venta():
     data = {}
+    total_de_productos = 0
+    total_valor_venta = 0
+    fecha_venta = datetime.now().date()
+    operador_id = Operador().Id(environ.get("APPUSER"))
+    cliente = input("Ingrese el CUIL del cliente: ")
+    cliente_id = Cliente().Id(cliente)
     producto = input("Ingrese los productos a comprar (pantalon,zapatillas,..): ")
     cantidad = input("Ingrese la cantidad de los mismos (3,2,..): ")
 
@@ -43,7 +50,33 @@ def venta():
     zip_iterator = zip(producto, cantidad)
     data = dict(zip_iterator)
 
-    Venta().procesar_ventas(data=data)
+    for k, v in data.items():
+        if Producto().buscar(k)[0][3] > 0:
+            nuevo_stock = Producto().buscar(k)[0][3] - int(v)
+            total_de_productos = total_de_productos + int(v)
+            total_valor_venta = int(v) * Producto().buscar(k)[0][2]
+
+            Producto().actualizar_stock(k, nuevo_stock)
+        else:
+            print("No hay Stock de producto '{}'".format(k))
+
+    Venta().procesar_ventas(
+        total_de_productos, total_valor_venta, fecha_venta, operador_id, cliente_id
+    )
+
+    venta_id = int(Venta().buscar(total_de_productos))
+
+    print("Resumen de venta: ")
+    print("Productos: ")
+    for k, v in data.items():
+        print("producto: " + k + " cantidad: " + v)
+        Ventas_x_Productos().agregar(
+            venta_id, Producto().Id(k), v, Producto().Precio(k)
+        )
+
+    print("Venta procesada!")
+
+    # Venta().procesar_ventas(data=data)
 
     # print("Desea generar el ticket de venta?: ")
     # ticket = input("[1|SI] [2|NO]")

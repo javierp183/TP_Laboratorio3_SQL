@@ -129,10 +129,13 @@ class Operador(Database):
             )
         )
 
-        pass
-
     def baja_logica(self, usuario):
         pass
+
+    def estado(self, usuario):
+        return self.execquery(
+            "select O.Alta from Operador as O where usuario = '{}'".format(usuario)
+        )[0][0]
 
     def borrar(self, usuario):
         return self.execquery(
@@ -191,7 +194,7 @@ class Operador(Database):
 
     def listar(self):
         return self.execquery(
-            "select O.ID,P.Nombre,O.Usuario,O.Nombres,O.Apellidos,O.Clave,O.FechaReg \
+            "select O.ID,P.Nombre,O.Usuario,O.Nombres,O.Apellidos,O.Clave,O.FechaReg, O.Alta \
             from Operador as O  \
                 inner join Pais as P on P.ID = O.IDPais;"
         )
@@ -218,6 +221,21 @@ class Operador(Database):
     def clave(self, usuario):
         return self.execquery(
             "select O.Clave from Operador as O where usuario = '{}'".format(usuario)
+        )[0][0]
+
+    def Id(self, usuario):
+        return self.execquery(
+            "select O.ID from Operador as O where usuario = '{}'".format(usuario)
+        )[0][0]
+
+    def ventas_por_año(self, usuario, anio):
+        return self.execquery(
+            "select count(V.Fecha) \
+            from Ventas as V \
+                inner join Operador as O on O.ID = V.IDOperador \
+            where O.Usuario = '{}' and YEAR(V.Fecha) = '{}'".format(
+                usuario, anio
+            )
         )[0][0]
 
 
@@ -269,6 +287,33 @@ class Cliente(Database):
                                 inner join Pais as P on P.ID = C.IDPais;"
         )
 
+    def Id(self, cuil):
+        return self.execquery(
+            "select C.ID from Cliente as C where Cuil = '{}'".format(cuil)
+        )[0][0]
+
+    def consulta_ventas_por_sexo(self):
+        return self.execquery(
+            "select distinct C.Sexo, \
+                ( \
+                select count(V.ID) \
+                from Ventas as V \
+                where C.Sexo = 'M' \
+            ) as [Sexo Masculino], \
+                ( \
+                select count(V.ID) \
+                from Ventas as V \
+                where C.Sexo = 'F' \
+            ) as [Sexo Femenino] \
+            from Cliente as C"
+        )
+
+    def edad_media_vista(self):
+        return self.execquery("select * from VW_EdadMediaClientes")[0][0]
+
+    def superan_media_vista(self):
+        return self.execquery("select * from VW_ClientesQueSuperanEdadMedia")
+
 
 class Producto(Database):
     def atributos(self, Id):
@@ -311,8 +356,40 @@ class Producto(Database):
             )
         )
 
-    def actualizar(self):
-        pass
+    def actualizar_stock(self, producto, cantidad):
+        print(
+            "Update Producto set Stock='{}' where Descripcion = '{}';".format(
+                cantidad, producto
+            )
+        )
+
+        return self.execquery(
+            "Update Producto set Stock='{}' where Descripcion = '{}';".format(
+                cantidad, producto
+            )
+        )
+
+    def buscar(self, producto):
+        return self.execquery(
+            "select P.Descripcion,P.Color,P.Precio,P.Stock from Producto as P where Descripcion = '{}'".format(
+                producto
+            )
+        )
+
+    def Id(self, producto):
+        return self.execquery(
+            "select P.ID from Producto as P where Descripcion = '{}'".format(producto)
+        )[0][0]
+
+    def Precio(self, producto):
+        return self.execquery(
+            "select P.Precio from Producto as P where Descripcion = '{}'".format(
+                producto
+            )
+        )[0][0]
+
+    def agregar_stock(self, producto):
+        print("update Producto set stock='{}' where Descripcion = '{}';")
 
 
 class Stock(Database):
@@ -363,10 +440,67 @@ class Venta(Database):
     def actualizar(self):
         pass
 
-    def procesar_ventas(self, data):
-        for k, v in data.items():
-            print(k)
-        pass
+    def procesar_ventas(
+        self,
+        total_de_productos,
+        total_valor_venta,
+        fecha_venta,
+        operador_id,
+        cliente_id,
+    ):
+        print(
+            "insert into Ventas (CantidadTotalProductos, valorTotaldeVenta, Fecha, IDCliente, IDOperador) values ({},{},CAST(N'{}' AS Date),{},{})".format(
+                total_de_productos,
+                total_valor_venta,
+                fecha_venta,
+                cliente_id,
+                operador_id,
+            )
+        )
+        return self.execquery(
+            "insert into Ventas (CantidadTotalProductos, valorTotaldeVenta, Fecha, IDCliente, IDOperador) values ({},{},CAST(N'{}' AS Date),{},{})".format(
+                total_de_productos,
+                total_valor_venta,
+                fecha_venta,
+                cliente_id,
+                operador_id,
+            )
+        )
+
+    def buscar(self, total_de_productos):
+        return self.execquery(
+            "select V.ID from Ventas as V where CantidadTotalProductos = {}".format(
+                total_de_productos
+            )
+        )[0][0]
+
+    def consulta_ventas_por_anio(self, anio):
+        return self.execquery(
+            "select count(V.Fecha) \
+            from Ventas as V \
+            where YEAR(V.Fecha) = '{}'".format(
+                anio
+            )
+        )[0][0]
+
+
+class Ventas_x_Productos(Database):
+    def agregar(self, idventas, idproducto, cantidad_producto, precio_producto):
+        return self.execquery(
+            "insert into Ventas_x_Producto (IDVentas, IDProducto, CantidadProducto,PrecioProducto) values ({},{},{},{})".format(
+                idventas, idproducto, cantidad_producto, precio_producto
+            )
+        )
+
+    def cuantas_veces_se_vendio_un_producto(self, producto):
+        return self.execquery(
+            "select count(P.ID) \
+                from Producto as P \
+                inner join Ventas_x_Producto as VXP on VXP.IDProducto = P.ID \
+            where P.Descripcion = '{}'".format(
+                producto
+            )
+        )[0][0]
 
 
 class Pais(Database):
@@ -393,4 +527,27 @@ class Pais(Database):
         return self.execquery(
             "select P.ID from Pais as P where Nombre = '{}'".format(pais)
         )[0][0]
+
+    def suma_total_por_pais(self):
+        return self.execquery(
+            "select P.Nombre, \
+                ( \
+                select sum(V.ValorTotaldeVenta) \
+                from Operador as O \
+                    inner join Ventas as V on V.IDOperador = O.ID \
+                where P.ID = O.IDPais \
+            ) as [Venta total por Pais] \
+            from Pais as P"
+        )
+
+    def total_clientes_por_pais(self):
+        return self.execquery(
+            "select P.Nombre, \
+                ( \
+                    select count(C.ID) \
+                from Cliente as C \
+                where C.IDPais = P.ID \
+                ) as [Cantidad de Clientes] \
+                from Pais as P"
+        )
 
